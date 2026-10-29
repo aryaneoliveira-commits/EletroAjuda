@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EletroAjuda — Assistente de Estudos em Eletroeletrônica</title>
+  <meta name="description" content="Plataforma educacional para estudantes de Ensino Médio e Técnico em Eletroeletrônica. Teoria explicada, calculadoras elétricas funcionais, catálogo de componentes e exercícios interativos.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       CABEÇALHO & NAVEGAÇÃO PRINCIPAL
+       ====================================================================== -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <div class="brand-logo" onclick="navigateTo('home')">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="brand-title">Eletro<span>Ajuda</span> <span class="brand-badge">Técnico</span></div>
+          <div style="font-size:0.65rem; color:#94a3b8; margin-top:-2px;">Assistente de Eletroeletrônica</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-btn active" data-view="home" onclick="navigateTo('home')">🏠 Início</button>
+        <button class="nav-btn" data-view="modules" onclick="navigateTo('modules')">📖 Aulas & Módulos</button>
+        <button class="nav-btn" data-view="calculators" onclick="navigateTo('calculators')">🧮 Calculadoras</button>
+        <button class="nav-btn" data-view="catalog" onclick="navigateTo('catalog')">🔬 Componentes</button>
+        <button class="nav-btn" data-view="exercises" onclick="navigateTo('exercises')">📝 Exercícios</button>
+        <button class="nav-btn" data-view="qna" onclick="navigateTo('qna')">❓ Dúvidas</button>
+        <button class="nav-btn" data-view="dashboard" onclick="navigateTo('dashboard')">🏆 Meu Progresso</button>
+      </nav>
+
+      <div class="nav-status">
+        <div class="xp-badge" onclick="navigateTo('dashboard')" title="Ver Meu Progresso">
+          <span>⚡</span>
+          <span id="navbar-xp">0 XP</span>
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Abrir menu">☰</button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <button class="nav-btn active" data-view="home" onclick="navigateTo('home')">🏠 Início</button>
+      <button class="nav-btn" data-view="modules" onclick="navigateTo('modules')">📖 10 Aulas & Módulos</button>
+      <button class="nav-btn" data-view="calculators" onclick="navigateTo('calculators')">🧮 Calculadoras de Bancada</button>
+      <button class="nav-btn" data-view="catalog" onclick="navigateTo('catalog')">🔬 Catálogo de Componentes</button>
+      <button class="nav-btn" data-view="exercises" onclick="navigateTo('exercises')">📝 Exercícios & Desafios</button>
+      <button class="nav-btn" data-view="qna" onclick="navigateTo('qna')">❓ Pergunte ao EletroAjuda</button>
+      <button class="nav-btn" data-view="dashboard" onclick="navigateTo('dashboard')">🏆 Meu Painel (<span id="navbar-xp-mobile">0 XP</span>)</button>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       CONTEÚDO PRINCIPAL (SPA)
+       ====================================================================== -->
+  <main>
+
+    <!-- 1. PÁGINA INICIAL -->
+    <section id="view-home" class="view-section active">
+      <!-- Hero -->
+      <div class="hero circuit-pattern">
+        <div class="container hero-content">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            Plataforma Aberta para Alunos do Ensino Médio & Técnico
+          </div>
+          <h1 class="hero-title">
+            Domine a Eletroeletrônica de forma <span class="text-gradient">simples e prática.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Aprenda conceitos, resolva cálculos e teste seus conhecimentos em um só lugar.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="navigateTo('modules')">
+              ▶ Começar a estudar
+            </button>
+            <button class="btn btn-secondary" onclick="navigateTo('exercises')">
+              📝 Resolver exercícios
+            </button>
+            <button class="btn btn-outline" onclick="navigateTo('calculators')">
+              🧮 Abrir calculadoras
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-num">10</div>
+              <div class="stat-label">Módulos Completos</div>
+            </div>
+            <div>
+              <div class="stat-num" style="color:var(--electric-cyan);">6+</div>
+              <div class="stat-label">Calculadoras Reais</div>
+            </div>
+            <div>
+              <div class="stat-num" style="color:var(--electric-glow);">16+</div>
+              <div class="stat-label">Componentes Catalogados</div>
+            </div>
+            <div>
+              <div class="stat-num" style="color:var(--emerald-500);">30+</div>
+              <div class="stat-label">Exercícios Didáticos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top:2.5rem; padding-bottom:3.5rem;">
+        <!-- Cards Rápidos de Acesso Obrigatórios -->
+        <div class="section-header">
+          <span class="section-tag">Acesso Rápido</span>
+          <h2 class="section-title">Pilares do Aprendizado</h2>
+          <p class="section-desc">Acesse diretamente os tópicos centrais mais consultados pelos estudantes.</p>
+        </div>
+
+        <div class="grid-4">
+          <!-- Card Lei de Ohm -->
+          <div class="card" onclick="navigateTo('module-detail', 3)" style="cursor:pointer;">
+            <div>
+              <div class="card-icon" style="background:#e0f2fe; color:#0369a1;">⚡</div>
+              <h3 class="card-title">Lei de Ohm</h3>
+              <p class="card-text">Relação direta entre Tensão, Corrente e Resistência. 1ª e 2ª leis e triângulo de fórmulas.</p>
+            </div>
+            <div class="card-link">
+              <span>Acessar Módulo 3</span>
+              <span>→</span>
+            </div>
+          </div>
+
+          <!-- Card Circuitos Elétricos -->
+          <div class="card" onclick="navigateTo('module-detail', 5)" style="cursor:pointer;">
+            <div>
+              <div class="card-icon" style="background:#f0fdf4; color:#059669;">🔀</div>
+              <h3 class="card-title">Circuitos Elétricos</h3>
+              <p class="card-text">Associação em série e paralelo, Leis de Kirchhoff (LKC e LKT) e cálculo de divisores.</p>
+            </div>
+            <div class="card-link">
+              <span>Acessar Módulo 5</span>
+              <span>→</span>
+            </div>
+          </div>
+
+          <!-- Card Componentes Eletrônicos -->
+          <div class="card" onclick="navigateTo('catalog')" style="cursor:pointer;">
+            <div>
+              <div class="card-icon" style="background:#fdf4ff; color:#9333ea;">🔬</div>
+              <h3 class="card-title">Componentes Eletrônicos</h3>
+              <p class="card-text">Biblioteca visual de resistores, diodos, capacitores, transistores, relés e Arduino.</p>
+            </div>
+            <div class="card-link">
+              <span>Abrir Catálogo Visual</span>
+              <span>→</span>
+            </div>
+          </div>
+
+          <!-- Card Exercícios -->
+          <div class="card" onclick="navigateTo('exercises')" style="cursor:pointer;">
+            <div>
+              <div class="card-icon" style="background:#fef3c7; color:#d97706;">📝</div>
+              <h3 class="card-title">Exercícios & Desafios</h3>
+              <p class="card-text">Quizzes interativos com níveis fácil a avançado, feedback imediato e pontuação em XP.</p>
+            </div>
+            <div class="card-link">
+              <span>Praticar Questões</span>
+              <span>→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Continue Aprendendo -->
+        <div class="continue-banner">
+          <div>
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--electric-cyan); margin-bottom:0.25rem;">
+              📖 Continue Aprendendo
+            </div>
+            <h3 id="continue-module-title" style="font-size:1.25rem; font-weight:800; margin-bottom:0.25rem;">
+              Carregando aula recomendada...
+            </h3>
+            <p id="continue-module-sub" style="font-size:0.8rem; color:var(--slate-300); max-width:600px;">
+              Retome de onde parou para continuar acumulando pontos e conquistando medalhas.
+            </p>
+            <div style="margin-top:0.75rem; font-size:0.75rem; color:var(--slate-300);">
+              Progresso do curso: <strong id="continue-progress-percent" style="color:var(--electric-cyan);">0%</strong> 
+              <span id="continue-progress-count" style="margin-left:0.5rem;">(0 de 10 aulas concluídas)</span>
+            </div>
+            <div class="progress-track" style="max-width:320px;">
+              <div id="continue-progress-fill" class="progress-fill" style="width:0%;"></div>
+            </div>
+          </div>
+          <button id="continue-module-btn" class="btn btn-primary" style="white-space:nowrap;">
+            Retomar Aula Agora →
+          </button>
+        </div>
+
+        <!-- Triângulo da Lei de Ohm Interativo -->
+        <div class="widget-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <div>
+              <span class="section-tag">Interatividade</span>
+              <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a;">Triângulo da Lei de Ohm</h3>
+              <p style="font-size:0.75rem; color:#64748b;">Clique na grandeza que deseja calcular para isolar a fórmula:</p>
+            </div>
+            <span style="font-size:0.75rem; font-weight:700; background:#e0f2fe; color:#0369a1; padding:0.25rem 0.6rem; border-radius:6px; font-family:var(--font-mono);">
+              V = R · I
+            </span>
+          </div>
+
+          <div class="triangle-svg-wrap">
+            <svg viewBox="0 0 200 180" width="220" height="190">
+              <!-- Top V -->
+              <path id="sector-V" class="triangle-sector active" d="M 100 15 L 155 90 L 45 90 Z" fill="#0284c7" stroke="#0369a1" stroke-width="2" onclick="selectOhmSector('V')"/>
+              <!-- Bottom Left I -->
+              <path id="sector-I" class="triangle-sector" d="M 45 90 L 100 90 L 100 170 L 15 170 Z" fill="#00d2ff" stroke="#0284c7" stroke-width="2" onclick="selectOhmSector('I')"/>
+              <!-- Bottom Right R -->
+              <path id="sector-R" class="triangle-sector" d="M 100 90 L 155 90 L 185 170 L 100 170 Z" fill="#10b981" stroke="#059669" stroke-width="2" onclick="selectOhmSector('R')"/>
+              <!-- Labels -->
+              <text x="100" y="70" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="900" pointer-events="none">V</text>
+              <text x="62" y="142" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="900" pointer-events="none">I</text>
+              <text x="138" y="142" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="900" pointer-events="none">R</text>
+            </svg>
+          </div>
+
+          <div class="triangle-info">
+            <span id="triangle-info-title" style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:#0284c7;">Calculando Tensão (V)</span>
+            <div id="triangle-info-formula" style="font-size:1.5rem; font-weight:900; color:#0f172a; margin:0.25rem 0;">V = R · I</div>
+            <p id="triangle-info-desc" style="font-size:0.8rem; color:#475569; margin-bottom:0.5rem;">
+              Para encontrar a Tensão (Volts), multiplique a Resistência (Ohms) pela Corrente (Ampères).
+            </p>
+            <div id="triangle-info-example" style="font-size:0.75rem; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:0.5rem; color:#0f172a;">
+              <strong>Exemplo:</strong> R = 100 Ω e I = 0,2 A → V = 100 × 0,2 = <strong>20 V</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefícios da Plataforma -->
+        <div class="section-header" style="text-align:center; max-width:680px; margin:2.5rem auto 1.5rem;">
+          <h2 class="section-title">Por que o EletroAjuda acelera seu aprendizado?</h2>
+          <p class="section-desc">Criado sob medida para solucionar as principais dúvidas de laboratório e teoria técnica.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon" style="background:#e0f2fe; color:#0369a1;">🧮</div>
+            <h3 class="card-title">Cálculos Passo a Passo Reais</h3>
+            <p class="card-text">Nossas ferramentas numéricas detalham todas as etapas do cálculo, mostrando as fórmulas aplicadas e a conversão correta de grandezas.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:#f0fdf4; color:#059669;">🔬</div>
+            <h3 class="card-title">Catálogo com Símbolos e Pinagem</h3>
+            <p class="card-text">Reconheça componentes tanto no esquema de circuito quanto na protoboard real, prevenindo danos com pinagem incorreta.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:#fef3c7; color:#d97706;">❓</div>
+            <h3 class="card-title">Assistente Didático de Dúvidas</h3>
+            <p class="card-text">Área dedicada para consulta de conceitos teóricos fundamentais com exemplos claros, fórmulas e analogias intuitivas.</p>
+          </div>
+        </div>
+
+        <!-- Alerta de Segurança Elétrica NR-10 -->
+        <div class="safety-banner">
+          <div class="safety-header">
+            <span>⚠️</span>
+            <span>Segurança em Instalações e Experimentos Didáticos (Diretrizes NR-10)</span>
+          </div>
+          <p style="font-size:0.8rem; color:#78350f; line-height:1.6;">
+            A eletricidade exige respeito rigoroso. No EletroAjuda priorizamos o aprendizado prático e seguro:
+          </p>
+          <div class="safety-grid">
+            <div class="safety-box">
+              <strong>Extra-Baixa Tensão:</strong> Trabalhe sempre com circuitos de bancada de até 12V (pilhas, baterias e Arduino).
+            </div>
+            <div class="safety-box">
+              <strong>Nunca use Tomadas:</strong> Não realize experimentos diretamente na rede elétrica de 127V/220V sem supervisão técnica de um professor.
+            </div>
+            <div class="safety-box">
+              <strong>Desenergize antes de montar:</strong> Sempre desligue a fonte antes de alterar cabos ou chips na protoboard.
+            </div>
+            <div class="safety-box">
+              <strong>Atenção a Curtos:</strong> Cuidado com resistores sobrecarregados e reguladores de tensão que podem atingir temperaturas altas.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. CENTRAL DE APRENDIZAGEM (LISTA DOS 10 MÓDULOS) -->
+    <section id="view-modules" class="view-section">
+      <div class="container" style="padding-top:2rem; padding-bottom:3.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1rem;">
+          <div>
+            <span class="section-tag">Central de Estudos</span>
+            <h1 class="section-title">10 Módulos de Eletroeletrônica</h1>
+            <p class="section-desc">Fundamentos, circuitos, semicondutores, lógica digital e práticas de laboratório.</p>
+          </div>
+          <div style="max-width:300px; width:100%;">
+            <input type="text" id="modules-search-input" class="form-control" placeholder="Buscar módulo ou fórmula..." oninput="renderModulesList()">
+          </div>
+        </div>
+
+        <div id="modules-grid" class="grid-2">
+          <!-- Renderizado dinamicamente via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.1 DETALHAMENTO DO MÓDULO -->
+    <section id="view-module-detail" class="view-section">
+      <div class="container" style="padding-top:1.5rem; padding-bottom:3.5rem;">
+        <!-- Top controls -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem;">
+          <button class="btn btn-secondary" onclick="navigateTo('modules')" style="font-size:0.8rem; padding:0.4rem 0.85rem;">
+            ← Voltar para todos os módulos
+          </button>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <button id="detail-toggle-complete-btn" class="btn btn-secondary" style="font-size:0.8rem; padding:0.4rem 0.85rem;">
+              ◯ Marcar como Concluído
+            </button>
+            <button id="detail-prev-btn" class="btn btn-secondary" style="padding:0.4rem 0.65rem;" title="Módulo Anterior">◀</button>
+            <button id="detail-next-btn" class="btn btn-secondary" style="padding:0.4rem 0.65rem;" title="Próximo Módulo">▶</button>
+          </div>
+        </div>
+
+        <!-- Header Card -->
+        <div style="background:linear-gradient(135deg, var(--navy-900), var(--navy-800)); color:#ffffff; border-radius:var(--radius-2xl); padding:1.75rem; margin-bottom:1.5rem; border:1px solid rgba(56, 189, 248, 0.3);">
+          <span id="detail-category" style="font-size:0.7rem; font-weight:700; color:var(--electric-cyan); text-transform:uppercase;">Módulo</span>
+          <span id="detail-readtime" style="font-size:0.75rem; color:#94a3b8; margin-left:0.75rem;">⏱️ 15 min</span>
+          <h1 id="detail-title" style="font-size:1.75rem; font-weight:900; margin:0.35rem 0;">Título do Módulo</h1>
+          <p id="detail-subtitle" style="font-size:0.9rem; color:var(--slate-300); max-width:800px;">Subtítulo explicativo</p>
+        </div>
+
+        <!-- Abas do Módulo -->
+        <div class="tab-nav">
+          <button class="tab-btn detail-tab-btn active" data-tab="teoria" onclick="switchDetailTab('teoria')">📖 Teoria & Conceitos</button>
+          <button class="tab-btn detail-tab-btn" data-tab="formulas" onclick="switchDetailTab('formulas')">⚡ Fórmulas & SI</button>
+          <button class="tab-btn detail-tab-btn" data-tab="exemplos" onclick="switchDetailTab('exemplos')">🧮 Exemplos Passo a Passo</button>
+          <button class="tab-btn detail-tab-btn" data-tab="pratica" onclick="switchDetailTab('pratica')">🏭 Aplicações & Segurança</button>
+          <button class="tab-btn detail-tab-btn" data-tab="quiz" onclick="switchDetailTab('quiz')">📝 Questionário</button>
+        </div>
+
+        <div id="detail-tab-content">
+          <!-- Conteúdo da aba renderizado dinamicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CALCULADORAS ELÉTRICAS FUNCIONAIS -->
+    <section id="view-calculators" class="view-section">
+      <div class="container" style="padding-top:2rem; padding-bottom:3.5rem;">
+        <div class="section-header">
+          <span class="section-tag">Ferramentas de Bancada</span>
+          <h1 class="section-title">Calculadoras Elétricas Funcionais</h1>
+          <p class="section-desc">Cálculos matemáticos passo a passo, fórmulas exibidas e conversão correta de unidades.</p>
+        </div>
+
+        <!-- Abas das Calculadoras -->
+        <div class="tab-nav" style="margin-bottom:2rem;">
+          <button class="tab-btn calc-nav-btn active" data-calctab="ohm" onclick="switchCalcTab('ohm')">Lei de Ohm (V, I, R)</button>
+          <button class="tab-btn calc-nav-btn" data-calctab="power" onclick="switchCalcTab('power')">Potência Elétrica</button>
+          <button class="tab-btn calc-nav-btn" data-calctab="series" onclick="switchCalcTab('series')">Resistores em Série</button>
+          <button class="tab-btn calc-nav-btn" data-calctab="parallel" onclick="switchCalcTab('parallel')">Resistores em Paralelo</button>
+          <button class="tab-btn calc-nav-btn" data-calctab="color" onclick="switchCalcTab('color')">Código de Cores</button>
+          <button class="tab-btn calc-nav-btn" data-calctab="led" onclick="switchCalcTab('led')">Resistor para LED</button>
+        </div>
+
+        <!-- 3.1 Painel Lei de Ohm -->
+        <div id="calc-pane-ohm" class="calc-pane">
+          <div class="calc-card">
+            <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.25rem;">Calculadora da Primeira Lei de Ohm</h3>
+            <p style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Escolha qual grandeza deseja descobrir e informe os outros dois parâmetros.</p>
+
+            <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:0.85rem;">
+              <span class="form-label">Variável Alvo a Calcular:</span>
+              <div style="display:flex; gap:1.5rem; margin-top:0.35rem; font-size:0.85rem; font-weight:700;">
+                <label style="cursor:pointer;"><input type="radio" name="ohm-target" value="V" checked> Tensão (V)</label>
+                <label style="cursor:pointer;"><input type="radio" name="ohm-target" value="I"> Corrente (I)</label>
+                <label style="cursor:pointer;"><input type="radio" name="ohm-target" value="R"> Resistência (R)</label>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Tensão Elétrica (V):</label>
+                <div class="input-row">
+                  <input type="number" id="ohm-v" class="form-control" value="12" step="any">
+                  <select id="ohm-v-unit" class="unit-select">
+                    <option value="0.001">mV</option>
+                    <option value="1" selected>V</option>
+                    <option value="1000">kV</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Corrente Elétrica (I):</label>
+                <div class="input-row">
+                  <input type="number" id="ohm-i" class="form-control" value="0.5" step="any">
+                  <select id="ohm-i-unit" class="unit-select">
+                    <option value="0.000001">µA</option>
+                    <option value="0.001">mA</option>
+                    <option value="1" selected>A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Resistência Elétrica (R):</label>
+                <div class="input-row">
+                  <input type="number" id="ohm-r" class="form-control" value="24" step="any">
+                  <select id="ohm-r-unit" class="unit-select">
+                    <option value="1" selected>Ω</option>
+                    <option value="1000">kΩ</option>
+                    <option value="1000000">MΩ</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div id="ohm-error" style="display:none; background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; border-radius:10px; padding:0.75rem; font-size:0.8rem; margin-bottom:1rem;"></div>
+
+            <button class="btn btn-primary" onclick="calculateOhm()" style="width:100%; font-size:0.9rem;">
+              Calcular Variável Alvo
+            </button>
+
+            <div id="ohm-result-box" class="calc-result-box" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#0284c7;">Resultado:</span>
+                <span id="ohm-result-formula" style="font-family:var(--font-mono); font-weight:700; background:#ffffff; padding:0.2rem 0.5rem; border-radius:6px; border:1px solid #bae6fd; font-size:0.8rem;"></span>
+              </div>
+              <div id="ohm-result-val" class="result-val"></div>
+              <div id="ohm-result-steps" class="steps-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 Painel Potência -->
+        <div id="calc-pane-power" class="calc-pane" style="display:none;">
+          <div class="calc-card">
+            <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.25rem;">Calculadora de Potência Elétrica</h3>
+            <p style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Determine a potência a partir de qualquer par de grandezas elétricas conhecidas.</p>
+
+            <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:0.85rem;">
+              <span class="form-label">Fórmula Desejada:</span>
+              <div style="display:flex; flex-wrap:wrap; gap:1.25rem; margin-top:0.35rem; font-size:0.85rem; font-weight:700;">
+                <label style="cursor:pointer;"><input type="radio" name="power-mode" value="VI" checked> P = V · I</label>
+                <label style="cursor:pointer;"><input type="radio" name="power-mode" value="RI"> P = R · I² (Efeito Joule)</label>
+                <label style="cursor:pointer;"><input type="radio" name="power-mode" value="VR"> P = V² / R</label>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Tensão (V em Volts):</label>
+                <input type="number" id="pow-v" class="form-control" value="12" step="any">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Corrente (I em Ampères):</label>
+                <input type="number" id="pow-i" class="form-control" value="2" step="any">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Resistência (R em Ohms):</label>
+                <input type="number" id="pow-r" class="form-control" value="6" step="any">
+              </div>
+            </div>
+
+            <div id="pow-error" style="display:none; background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; border-radius:10px; padding:0.75rem; font-size:0.8rem; margin-bottom:1rem;"></div>
+
+            <button class="btn btn-primary" onclick="calculatePower()" style="width:100%; font-size:0.9rem;">
+              Calcular Potência Elétrica
+            </button>
+
+            <div id="pow-result-box" class="calc-result-box" style="display:none; background:#fffbeb; border-color:#fde68a;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#b45309;">Potência Calculada:</span>
+                <span id="pow-result-formula" style="font-family:var(--font-mono); font-weight:700; background:#ffffff; padding:0.2rem 0.5rem; border-radius:6px; border:1px solid #fcd34d; font-size:0.8rem; color:#92400e;"></span>
+              </div>
+              <div id="pow-result-val" class="result-val" style="color:#78350f;"></div>
+              <div id="pow-result-steps" class="steps-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.3 Painel Série -->
+        <div id="calc-pane-series" class="calc-pane" style="display:none;">
+          <div class="calc-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <h3 style="font-size:1.15rem; font-weight:800;">Resistores em Série</h3>
+                <p style="font-size:0.8rem; color:#64748b;">Req = R1 + R2 + ... + Rn</p>
+              </div>
+              <button class="btn btn-secondary" onclick="addSeriesResistor()" style="font-size:0.8rem; padding:0.4rem 0.75rem;">
+                + Adicionar Resistor
+              </button>
+            </div>
+
+            <div id="series-resistors-container">
+              <!-- Renderizado dinamicamente -->
+            </div>
+
+            <button class="btn btn-primary" onclick="calculateSeries()" style="width:100%; margin-top:1rem; font-size:0.9rem;">
+              Calcular Resistência Equivalente Série
+            </button>
+
+            <div id="series-result-box" class="calc-result-box" style="display:none;">
+              <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#0284c7;">Req Série Total:</span>
+              <div id="series-result-val" class="result-val"></div>
+              <div id="series-result-steps" class="steps-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.4 Painel Paralelo -->
+        <div id="calc-pane-parallel" class="calc-pane" style="display:none;">
+          <div class="calc-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <h3 style="font-size:1.15rem; font-weight:800;">Resistores em Paralelo</h3>
+                <p style="font-size:0.8rem; color:#64748b;">1/Req = 1/R1 + 1/R2 + ... + 1/Rn</p>
+              </div>
+              <button class="btn btn-secondary" onclick="addParallelResistor()" style="font-size:0.8rem; padding:0.4rem 0.75rem;">
+                + Adicionar Ramo
+              </button>
+            </div>
+
+            <div id="parallel-resistors-container">
+              <!-- Renderizado dinamicamente -->
+            </div>
+
+            <button class="btn btn-primary" onclick="calculateParallel()" style="width:100%; margin-top:1rem; font-size:0.9rem;">
+              Calcular Resistência Equivalente Paralela
+            </button>
+
+            <div id="parallel-result-box" class="calc-result-box" style="display:none;">
+              <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#0284c7;">Req Paralelo Total:</span>
+              <div id="parallel-result-val" class="result-val"></div>
+              <div id="parallel-result-steps" class="steps-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.5 Painel Código de Cores -->
+        <div id="calc-pane-color" class="calc-pane" style="display:none;">
+          <div class="calc-card">
+            <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.25rem;">Código de Cores de Resistores (4 Faixas)</h3>
+            <p style="font-size:0.8rem; color:#64748b; margin-bottom:1rem;">Selecione as cores para visualizar o resistor e calcular a resistência.</p>
+
+            <div class="resistor-display">
+              <div class="resistor-leads"></div>
+              <div class="resistor-body">
+                <div id="band-visual-1" class="color-band"></div>
+                <div id="band-visual-2" class="color-band"></div>
+                <div id="band-visual-mult" class="color-band"></div>
+                <div style="width:12px;"></div>
+                <div id="band-visual-tol" class="color-band"></div>
+              </div>
+              <div class="resistor-leads"></div>
+            </div>
+
+            <div style="text-align:center; margin-bottom:1.5rem;">
+              <div id="resistor-code-result" style="font-size:1.85rem; font-weight:900; color:#0f172a;">1 kΩ ±5%</div>
+              <div style="font-size:0.75rem; color:#64748b;">Valor nominal do componente decodificado</div>
+            </div>
+
+            <div class="grid-4" style="font-size:0.75rem;">
+              <div>
+                <label class="form-label">1ª Faixa:</label>
+                <select id="cc-b1" class="unit-select" style="width:100%;" onchange="updateColorCode()">
+                  <option value="1" selected>Marrom (1)</option>
+                  <option value="2">Vermelho (2)</option>
+                  <option value="3">Laranja (3)</option>
+                  <option value="4">Amarelo (4)</option>
+                  <option value="5">Verde (5)</option>
+                  <option value="6">Azul (6)</option>
+                  <option value="7">Violeta (7)</option>
+                  <option value="8">Cinza (8)</option>
+                  <option value="9">Branco (9)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">2ª Faixa:</label>
+                <select id="cc-b2" class="unit-select" style="width:100%;" onchange="updateColorCode()">
+                  <option value="0" selected>Preto (0)</option>
+                  <option value="1">Marrom (1)</option>
+                  <option value="2">Vermelho (2)</option>
+                  <option value="3">Laranja (3)</option>
+                  <option value="4">Amarelo (4)</option>
+                  <option value="5">Verde (5)</option>
+                  <option value="6">Azul (6)</option>
+                  <option value="7">Violeta (7)</option>
+                  <option value="8">Cinza (8)</option>
+                  <option value="9">Branco (9)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">Multiplicador:</label>
+                <select id="cc-mult" class="unit-select" style="width:100%;" onchange="updateColorCode()">
+                  <option value="1">Preto (×1)</option>
+                  <option value="10">Marrom (×10)</option>
+                  <option value="100" selected>Vermelho (×100)</option>
+                  <option value="1000">Laranja (×1k)</option>
+                  <option value="10000">Amarelo (×10k)</option>
+                  <option value="100000">Verde (×100k)</option>
+                  <option value="1000000">Azul (×1M)</option>
+                  <option value="0.1">Dourado (×0.1)</option>
+                  <option value="0.01">Prateado (×0.01)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">Tolerância:</label>
+                <select id="cc-tol" class="unit-select" style="width:100%;" onchange="updateColorCode()">
+                  <option value="5" selected>Dourado (±5%)</option>
+                  <option value="10">Prateado (±10%)</option>
+                  <option value="1">Marrom (±1%)</option>
+                  <option value="2">Vermelho (±2%)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.6 Painel Resistor para LED -->
+        <div id="calc-pane-led" class="calc-pane" style="display:none;">
+          <div class="calc-card">
+            <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.25rem;">Dimensionador de Resistor Limitador para LED</h3>
+            <p style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">R = (Vfonte - Vled) / Iled com recomendação da série comercial E24.</p>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label class="form-label">Tensão da Fonte (Vcc):</label>
+                <input type="number" id="led-vcc" class="form-control" value="5.0" step="0.1">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Queda no LED (Vf):</label>
+                <select id="led-vf" class="unit-select" style="width:100%;">
+                  <option value="2.0" selected>Vermelho (~2.0V)</option>
+                  <option value="2.1">Amarelo (~2.1V)</option>
+                  <option value="2.2">Verde (~2.2V)</option>
+                  <option value="3.2">Azul (~3.2V)</option>
+                  <option value="3.2">Branco (~3.2V)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Corrente do LED (mA):</label>
+                <input type="number" id="led-i" class="form-control" value="15" step="1">
+              </div>
+            </div>
+
+            <div id="led-error" style="display:none; background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; border-radius:10px; padding:0.75rem; font-size:0.8rem; margin-bottom:1rem;"></div>
+
+            <button class="btn btn-primary" onclick="calculateLedResistor()" style="width:100%; font-size:0.9rem;">
+              Calcular Resistor para LED
+            </button>
+
+            <div id="led-result-box" class="calc-result-box" style="display:none;">
+              <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#0284c7;">Resistor Comercial Recomendado (E24):</span>
+              <div id="led-r-commercial" class="result-val"></div>
+              <div id="led-r-exact" style="font-size:0.8rem; color:#64748b; font-weight:600; margin-top:0.25rem;"></div>
+              <div id="led-r-steps" class="steps-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CATÁLOGO VISUAL DE COMPONENTES -->
+    <section id="view-catalog" class="view-section">
+      <div class="container" style="padding-top:2rem; padding-bottom:3.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1rem;">
+          <div>
+            <span class="section-tag">Biblioteca Visual</span>
+            <h1 class="section-title">Catálogo de Componentes Eletrônicos</h1>
+            <p class="section-desc">Identificação, símbolos esquemáticos, pinagem e cuidados de bancada.</p>
+          </div>
+          <div style="max-width:300px; width:100%;">
+            <input type="text" id="catalog-search-input" class="form-control" placeholder="Buscar componente..." oninput="renderCatalog()">
+          </div>
+        </div>
+
+        <!-- Filtros por Categoria -->
+        <div class="tab-nav" style="border:none; margin-bottom:1.5rem;">
+          <button class="tab-btn catalog-cat-pill active" data-cat="Todos" onclick="selectCatalogCategory('Todos', this)">Todos</button>
+          <button class="tab-btn catalog-cat-pill" data-cat="Passivos" onclick="selectCatalogCategory('Passivos', this)">Passivos</button>
+          <button class="tab-btn catalog-cat-pill" data-cat="Semicondutores" onclick="selectCatalogCategory('Semicondutores', this)">Semicondutores</button>
+          <button class="tab-btn catalog-cat-pill" data-cat="Eletromecânicos" onclick="selectCatalogCategory('Eletromecânicos', this)">Eletromecânicos</button>
+          <button class="tab-btn catalog-cat-pill" data-cat="Circuitos Integrados" onclick="selectCatalogCategory('Circuitos Integrados', this)">Circuitos Integrados</button>
+          <button class="tab-btn catalog-cat-pill" data-cat="Acessórios & Montagem" onclick="selectCatalogCategory('Acessórios & Montagem', this)">Acessórios</button>
+        </div>
+
+        <div id="catalog-grid" class="grid-3">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXERCÍCIOS E DESAFIOS -->
+    <section id="view-exercises" class="view-section">
+      <div class="container" style="padding-top:2rem; padding-bottom:3.5rem;">
+        <div class="section-header" style="text-align:center; max-width:640px; margin:0 auto 2rem;">
+          <span class="section-tag">Arena de Questões</span>
+          <h1 class="section-title">Exercícios & Desafios Técnicos</h1>
+          <p class="section-desc">Teste sua memória técnica, cálculos e conceitos com feedback imediato e ganho de XP.</p>
+        </div>
+
+        <!-- Tela de Configuração -->
+        <div id="exercises-config-card" class="quiz-box">
+          <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:1rem;">Configurar Rodada de Exercícios</h3>
+          
+          <div class="grid-3" style="margin-bottom:1.5rem;">
+            <div class="form-group">
+              <label class="form-label">Dificuldade:</label>
+              <select id="ex-diff-select" class="unit-select" style="width:100%;">
+                <option value="Todos" selected>Todos os Níveis</option>
+                <option value="Fácil">Fácil (Conceitual)</option>
+                <option value="Intermediário">Intermediário (Cálculos)</option>
+                <option value="Avançado">Avançado (Projetos)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Tipo de Questão:</label>
+              <select id="ex-type-select" class="unit-select" style="width:100%;">
+                <option value="Todos" selected>Todas as Questões</option>
+                <option value="conceitual">Apenas Conceituais</option>
+                <option value="calculo">Apenas Questões com Cálculos</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Quantidade:</label>
+              <select id="ex-count-select" class="unit-select" style="width:100%;">
+                <option value="5">5 Questões</option>
+                <option value="10" selected>10 Questões</option>
+                <option value="15">15 Questões</option>
+                <option value="30">Todas as 30 Questões</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="startExerciseChallenge()" style="width:100%; font-size:0.95rem; padding:0.85rem;">
+            Iniciar Desafio Agora ➔
+          </button>
+        </div>
+
+        <!-- Tela Ativa da Questão -->
+        <div id="exercises-active-card" class="quiz-box" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; font-size:0.8rem; font-weight:700;">
+            <span id="quiz-progress-text" style="color:#0284c7;">Questão 1 de 10</span>
+            <span id="quiz-score-badge" style="color:#059669;">0 acertos</span>
+          </div>
+
+          <div class="progress-track" style="margin-bottom:1.25rem;">
+            <div id="quiz-progress-bar" class="progress-fill" style="width:10%;"></div>
+          </div>
+
+          <div id="quiz-question-meta" style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.75rem;"></div>
+
+          <h2 id="quiz-question-text" style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:1.25rem; line-height:1.5;"></h2>
+
+          <div id="quiz-options-list"></div>
+
+          <div id="quiz-instant-feedback" style="display:none; margin-top:1rem;"></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem; border-top:1px solid #f1f5f9; padding-top:1rem;">
+            <button class="btn btn-secondary" onclick="initExercises()" style="font-size:0.8rem; padding:0.4rem 0.85rem;">
+              Cancelar
+            </button>
+            <button id="quiz-next-btn" class="btn btn-primary" onclick="nextExerciseQuestion()" style="display:none;">
+              Próxima Questão ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- Tela de Resultado Final -->
+        <div id="exercises-result-card" class="quiz-box" style="display:none; text-align:center;">
+          <div style="font-size:3rem; margin-bottom:0.5rem;">🏆</div>
+          <h2 style="font-size:1.5rem; font-weight:900; margin-bottom:0.25rem;">Desafio Concluído!</h2>
+          <div id="result-final-score" style="font-size:3.5rem; font-weight:900; color:#0f172a;">8 / 10</div>
+          <div id="result-final-xp" style="font-size:0.9rem; font-weight:700; color:#0284c7; margin-bottom:1.5rem;">+200 XP conquistados</div>
+
+          <div style="text-align:left; border-top:1px solid #e2e8f0; padding-top:1.25rem;">
+            <h4 style="font-size:0.9rem; font-weight:800; margin-bottom:0.75rem;">Gabarito e Revisão:</h4>
+            <div id="result-questions-review"></div>
+          </div>
+
+          <button class="btn btn-primary" onclick="initExercises()" style="margin-top:1rem;">
+            Fazer Novo Desafio
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ASSISTENTE DE DÚVIDAS -->
+    <section id="view-qna" class="view-section">
+      <div class="container" style="padding-top:2rem; padding-bottom:3.5rem;">
+        <div class="section-header">
+          <span class="section-tag">Assistente Didático</span>
+          <h1 class="section-title">Pergunte ao EletroAjuda</h1>
+          <p class="section-desc">Tire dúvidas técnicas imediatas sobre conceitos, cálculos, componentes e segurança.</p>
+        </div>
+
+        <div style="background:#e0f2fe; border:1px solid #bae6fd; border-radius:14px; padding:1rem; font-size:0.8rem; color:#0369a1; margin-bottom:1.5rem;">
+          ℹ️ <strong>Modo de Base Estruturada:</strong> Este assistente opera através de uma base técnica didática catalogada para estudantes técnicos, sem custos de API de IA e sem risco de alucinações de fórmulas incorretas.
+        </div>
+
+        <div class="calc-card" style="margin-bottom:1.5rem;">
+          <form onsubmit="submitQnASearch(event)" style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+            <input type="text" id="qna-search-input" class="form-control" placeholder="Digite sua dúvida aqui... Ex: 'Como dimensionar resistor para LED?'">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+
+          <span class="form-label">Dúvidas Sugeridas:</span>
+          <div id="qna-suggested-chips" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
+        </div>
+
+        <div id="qna-answer-box" class="calc-card">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ÁREA PESSOAL DO ESTUDANTE -->
+    <section id="view-dashboard" class="view-section">
+      <div class="container" style="padding-top:2rem; padding-bottom:3.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid #e2e8f0; padding-bottom:1rem;">
+          <div>
+            <span class="section-tag">Área do Estudante</span>
+            <h1 class="section-title">Painel de Aprendizado & Conquistas</h1>
+            <p class="section-desc">Seu progresso é salvo no navegador sem precisar de login.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="resetProgressData()" style="font-size:0.75rem; color:#f43f5e;">
+            Zerar Dados Locais
+          </button>
+        </div>
+
+        <!-- KPIs -->
+        <div class="grid-4" style="margin-bottom:2rem;">
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">Pontuação Acumulada</span>
+            <div id="dash-xp" style="font-size:2rem; font-weight:900; color:#f59e0b; margin:0.35rem 0;">0 XP</div>
+            <span style="font-size:0.7rem; color:#94a3b8;">+100 XP por aula concluída</span>
+          </div>
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">Módulos Concluídos</span>
+            <div id="dash-modules-count" style="font-size:2rem; font-weight:900; color:#0284c7; margin:0.35rem 0;">0 / 10</div>
+            <span style="font-size:0.7rem; color:#94a3b8;">Central de Estudos</span>
+          </div>
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">Progresso do Curso</span>
+            <div id="dash-percent" style="font-size:2rem; font-weight:900; color:#059669; margin:0.35rem 0;">0%</div>
+            <div class="progress-track"><div id="dash-bar" class="progress-fill" style="width:0%;"></div></div>
+          </div>
+          <div class="card">
+            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">Medalhas Desbloqueadas</span>
+            <div id="dash-badges-count" style="font-size:2rem; font-weight:900; color:#7c3aed; margin:0.35rem 0;">0 de 6</div>
+            <span style="font-size:0.7rem; color:#94a3b8;">Galeria do Técnico</span>
+          </div>
+        </div>
+
+        <!-- Galeria de Conquistas -->
+        <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:1rem;">Galeria de Conquistas & Medalhas</h3>
+        <div id="dash-badges-grid" class="grid-3" style="margin-bottom:2.5rem;"></div>
+
+        <!-- Checklist dos Módulos -->
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:18px; padding:1.5rem;">
+          <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:1rem;">Checklist das 10 Aulas Estudadas</h3>
+          <div id="dash-modules-checklist"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       MODAL DE DETALHES DE COMPONENTES
+       ====================================================================== -->
+  <div id="component-modal" class="modal-overlay" onclick="if(event.target === this) closeComponentModal()">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeComponentModal()">✕</button>
+      <div id="modal-component-body"></div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       RODAPÉ DO SITE
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <strong>Aviso de Segurança (NR-10):</strong> Pratique experimentos exclusivamente em extra-baixa tensão (&lt; 24V CC). Nunca manuseie tomadas de rede sem supervisão profissional!
+    </div>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div style="font-size:1.15rem; font-weight:800; color:#ffffff; margin-bottom:0.5rem;">
+          ⚡ Eletro<span style="color:var(--electric-cyan);">Ajuda</span>
+        </div>
+        <p style="font-size:0.75rem; line-height:1.6; color:#94a3b8;">
+          Assistente educacional gratuito criado para apoiar estudantes de Ensino Médio e Cursos Técnicos em Eletroeletrônica.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="navigateTo('home')">Página Inicial</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('modules')">10 Aulas Teóricas</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators')">Calculadoras Passo a Passo</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('catalog')">Catálogo de Componentes</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('exercises')">Exercícios e Desafios</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('dashboard')">Painel do Estudante</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Calculadoras</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators'); switchCalcTab('ohm');">Lei de Ohm (V = R·I)</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators'); switchCalcTab('power');">Potência Elétrica (Watts)</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators'); switchCalcTab('series');">Associação Série</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators'); switchCalcTab('parallel');">Associação Paralelo</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators'); switchCalcTab('color');">Código de Cores</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('calculators'); switchCalcTab('led');">Resistor para LED</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Diretrizes Técnicas</h4>
+        <p style="font-size:0.75rem; color:#94a3b8; line-height:1.6;">
+          Conteúdos estruturados de acordo com as normas <strong>ABNT NBR 5410</strong> e <strong>NR-10</strong> de segurança.
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="current-year">2026</span> EletroAjuda — Feito com dedicação para a educação técnica em eletroeletrônica.
+    </div>
+  </footer>
+
+  <!-- Scripts em JavaScript Puro -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function selectCatalogCategory(cat, btn) {
+      document.querySelectorAll('.catalog-cat-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog();
+    }
+  </script>
+</body>
+</html>
